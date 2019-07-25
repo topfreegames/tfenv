@@ -123,7 +123,7 @@ TFENV_ARCH=arm tfenv install 0.7.9
 
 The permanent configuration and downloaded terraform versions can be moved to a location outside `TFENV_ROOT` using the `TFENV_CONFIG_DIR` environment variable. The `use-gnupg`, `use-gpgv`, global `version` files are all read from this configuration location.
 
-This is recommended, for example, when tfenv is installed from homebrew since upgrading tfenv will also cause existing terraform versions to be deleted.
+This is recommended when tfenv is installed from homebrew since upgrading tfenv will delete `TFENV_ROOT`, including all configuration files and installed versions underneath it.
 
 ```console
 export TFENV_CONFIG_DIR="$HOME/.tfenv"
