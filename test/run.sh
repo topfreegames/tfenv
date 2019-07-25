@@ -6,6 +6,7 @@ if [ -n "${TFENV_DEBUG}" ]; then
 fi
 TFENV_ROOT="$(cd "$(dirname "${0}")/.." && pwd)"
 export PATH="${TFENV_ROOT}/bin:${PATH}"
+export TFENV_CONFIG_DIR="${TFENV_ROOT}/sandbox"
 
 errors=()
 if [ "${#}" -ne 0 ];then

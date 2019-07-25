@@ -6,10 +6,10 @@ source "${TFENV_ROOT}/libexec/helpers"
 [ "${#}" -ne 0 ] \
   && error_and_die "usage: tfenv list"
 
-[ -d "${TFENV_ROOT}/versions" ] \
+[ -d "${TFENV_CONFIG_DIR}/versions" ] \
   || error_and_die "No versions available. Please install one with: tfenv install"
 
-[[ -x "${TFENV_ROOT}/versions" && -r "${TFENV_ROOT}/versions" ]] \
+[[ -x "${TFENV_CONFIG_DIR}/versions" && -r "${TFENV_CONFIG_DIR}/versions" ]] \
   || error_and_die "tfenv versions directory is inaccessible!"
 
 print_version () {
@@ -20,6 +20,6 @@ print_version () {
     fi
 }
 
-for local_version in $(ls -1 "${TFENV_ROOT}/versions" | sort -t'.' -k 1nr,1 -k 2nr,2 -k 3nr,3); do
+for local_version in $(ls -1 "${TFENV_CONFIG_DIR}/versions" | sort -t'.' -k 1nr,1 -k 2nr,2 -k 3nr,3); do
     print_version "${local_version}"
 done

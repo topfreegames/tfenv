@@ -6,7 +6,12 @@ check_version() {
 }
 
 cleanup() {
-  rm -rf ./versions
+  if [ -n "$TFENV_CONFIG_DIR" ]; then
+    rm -rf "$TFENV_CONFIG_DIR"
+  else
+    rm -rf ./versions
+    rm ./version
+  fi
   rm -rf ./.terraform-version
   rm -rf ./min_required.tf
 }

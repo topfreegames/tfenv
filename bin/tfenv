@@ -25,6 +25,12 @@ else
   TFENV_ROOT="${TFENV_ROOT%/}"
 fi
 export TFENV_ROOT
+if [ -z "${TFENV_CONFIG_DIR}" ]; then
+  TFENV_CONFIG_DIR="${TFENV_ROOT}"
+else
+  TFENV_CONFIG_DIR="${TFENV_CONFIG_DIR%/}"
+fi
+export TFENV_CONFIG_DIR
 PATH="${TFENV_ROOT}/libexec:${PATH}"
 export PATH
 export TFENV_DIR="${PWD}"

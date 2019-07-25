@@ -119,6 +119,16 @@ Architecture other than the default amd64 can be specified with the `TFENV_ARCH`
 TFENV_ARCH=arm tfenv install 0.7.9
 ```
 
+### Customize configuration directory
+
+The permanent configuration and downloaded terraform versions can be moved to a location outside `TFENV_ROOT` using the `TFENV_CONFIG_DIR` environment variable. The `use-gnupg`, `use-gpgv`, global `version` files are all read from this configuration location.
+
+This is recommended, for example, when tfenv is installed from homebrew since upgrading tfenv will also cause existing terraform versions to be deleted.
+
+```console
+export TFENV_CONFIG_DIR="$HOME/.tfenv"
+```
+
 ### Customize remote
 
 Installing from a remote other than the default https://releases.hashicorp.com can be done by specifying the `TFENV_REMOTE` environment varible
