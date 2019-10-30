@@ -22,6 +22,7 @@ if [ -z ${TFENV_VERSION} ]; then
   export TFENV_VERSION="$(tfenv-version-name)"
 fi
 TF_BIN_PATH="${TFENV_CONFIG_DIR}/versions/${TFENV_VERSION}/terraform"
+
 export PATH="${TF_BIN_PATH}:${PATH}"
 
 exec "${TF_BIN_PATH}" "${@}"
