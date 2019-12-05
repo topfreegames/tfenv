@@ -16,6 +16,11 @@ else
   version_requested="${1}"
 fi
 
+if [ -z "${version_requested}" ]; then
+  warn_and_continue "No version specified, trying to use the min-required"
+  version_requested="min-required"
+fi
+
 if [[ "${version_requested}" =~ ^min-required$ ]]; then
   echo "Detecting minimal required version..."
   found_min_required="$(tfenv-min-required)"
