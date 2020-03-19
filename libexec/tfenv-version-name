@@ -5,7 +5,7 @@ set -e
 [ -n "${TFENV_DEBUG}" ] && set -x
 source "${TFENV_ROOT}/libexec/helpers"
 
-[ -d "${TFENV_ROOT}/versions" ] \
+[ -d "${TFENV_CONFIG_DIR}/versions" ] \
   || error_and_die "No versions of terraform installed. Please install one with: tfenv install"
 
 TFENV_VERSION_FILE="$(tfenv-version-file)"
@@ -13,7 +13,7 @@ TFENV_VERSION="$(cat "${TFENV_VERSION_FILE}" || true)"
 
 if [[ "${TFENV_VERSION}" =~ ^latest.*$ ]]; then
   [[ "${TFENV_VERSION}" =~ ^latest\:.*$ ]] && regex="${TFENV_VERSION##*\:}"
-  version="$(\ls "${TFENV_ROOT}/versions" \
+  version="$(\ls "${TFENV_CONFIG_DIR}/versions" \
     | sort -t'.' -k 1nr,1 -k 2nr,2 -k 3nr,3 \
     | grep -e "${regex}" \
     | head -n 1
@@ -27,7 +27,7 @@ fi
 
 version_exists() {
   local version="${1}"
-  [ -d "${TFENV_ROOT}/versions/${version}" ]
+  [ -d "${TFENV_CONFIG_DIR}/versions/${version}" ]
 }
 
 if version_exists "${TFENV_VERSION}"; then

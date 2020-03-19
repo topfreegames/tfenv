@@ -91,7 +91,7 @@ see web-of-trust status; beware that a lack of trust path will not cause a
 validation failure.
 
 #### .terraform-version
-If you use [.terraform-version](#terraform-version), `tfenv install` (no argument) will install the version written in it.
+If you use a [.terraform-version file](#terraform-version-file), `tfenv install` (no argument) will install the version written in it.
 
 #### min-required
 
@@ -117,6 +117,16 @@ Architecture other than the default amd64 can be specified with the `TFENV_ARCH`
 
 ```console
 TFENV_ARCH=arm tfenv install 0.7.9
+```
+
+### Customize configuration directory
+
+The permanent configuration and downloaded terraform versions can be moved to a location outside `TFENV_ROOT` using the `TFENV_CONFIG_DIR` environment variable. The `use-gnupg`, `use-gpgv`, global `version` files are all read from this configuration location.
+
+This is recommended when tfenv is installed from homebrew since upgrading tfenv will delete `TFENV_ROOT`, including all configuration files and installed versions underneath it.
+
+```console
+export TFENV_CONFIG_DIR="$HOME/.tfenv"
 ```
 
 ### Customize remote
@@ -193,8 +203,8 @@ List installable versions
 ...
 ```
 
-## .terraform-version
-If you put `.terraform-version` file on your project root, or in your home directory, tfenv detects it and use the version written in it. If the version is `latest` or `latest:<regex>`, the latest matching version currently installed will be selected.
+## .terraform-version file
+If you put a `.terraform-version` file on your project root, or in your home directory, tfenv detects it and uses the version written in it. If the version is `latest` or `latest:<regex>`, the latest matching version currently installed will be selected.
 
 ```console
 $ cat .terraform-version

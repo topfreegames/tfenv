@@ -9,7 +9,7 @@ declare version_requested version regex
 
 if [ -z "${1}" ]; then
   version_file="$(tfenv-version-file)"
-  if [ "${version_file}" != "${TFENV_ROOT}/version" ];then
+  if [ "${version_file}" != "${TFENV_CONFIG_DIR}/version" ];then
     version_requested="$(cat "${version_file}" || true)"
   fi
 else
@@ -31,7 +31,7 @@ fi
 version="$(tfenv-list | sed -E 's/^(\*| )? //g; s/ \(set by .+\)$//' | grep -e "${regex}" | head -n 1)"
 [ -n "${version}" ] || error_and_die "No versions matching '${1}' found in local"
 
-dst_path="${TFENV_ROOT}/versions/${version}"
+dst_path="${TFENV_CONFIG_DIR}/versions/${version}"
 if [ -f "${dst_path}/terraform" ]; then 
   info "Uninstall Terraform v${version}"
   rm -r "${dst_path}"
